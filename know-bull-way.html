@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Know Bull Way to a Better You</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1208;
+    --bg2: #221a0e;
+    --bg3: #2d2210;
+    --card: #2a1f0f;
+    --card2: #332814;
+    --amber: #e8a430;
+    --amber-light: #f2c46a;
+    --amber-dim: #b07820;
+    --warm-white: #f5eed8;
+    --warm-gray: #c4b48a;
+    --warm-muted: #8a7a5a;
+    --green: #7ab648;
+    --red: #e05a3a;
+    --border: rgba(232,164,48,0.18);
+    --border2: rgba(232,164,48,0.08);
+    --glow: 0 0 40px rgba(232,164,48,0.12);
+    --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--warm-white);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Warm texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 0%, rgba(232,164,48,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(180,100,20,0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HEADER */
+  .app-header {
+    text-align: center;
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  .app-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+    opacity: 0.8;
+  }
+
+  .app-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 6vw, 42px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--warm-white);
+    margin-bottom: 8px;
+  }
+
+  .app-title span {
+    color: var(--amber);
+    font-style: italic;
+  }
+
+  .app-subtitle {
+    font-size: 13px;
+    color: var(--warm-muted);
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+
+  /* NAV DOTS */
+  .nav-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .nav-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid var(--border);
+  }
+
+  .nav-dot.active {
+    background: var(--amber);
+    border-color: var(--amber);
+    box-shadow: 0 0 8px rgba(232,164,48,0.5);
+  }
+
+  /* SCREENS */
+  .screen { display: none; animation: fadeUp 0.5s ease; }
+  .screen.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--warm-white);
+    margin-bottom: 6px;
+  }
+
+  .card-subtitle {
+    font-size: 13px;
+    color: var(--warm-muted);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  /* INPUTS */
+  input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: var(--warm-white);
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: none;
+  }
+
+  input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(232,164,48,0.1);
+  }
+
+  input::placeholder, textarea::placeholder { color: var(--warm-muted); }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--warm-muted);
+    margin-bottom: 8px;
+  }
+
+  .form-group { margin-bottom: 20px; }
+
+  /* BUTTONS */
+  .btn-primary {
+    width: 100%;
+    padding: 16px;
+    background: var(--amber);
+    color: var(--bg);
+    border: none;
+    border-radius: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(232,164,48,0.3);
+  }
+
+  .btn-primary:hover {
+    background: var(--amber-light);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(232,164,48,0.4);
+  }
+
+  .btn-secondary {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    color: var(--amber);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--amber);
+    background: rgba(232,164,48,0.05);
+  }
+
+  /* QUOTE CARD */
+  .quote-card {
+    background: linear-gradient(135deg, var(--card2), var(--card));
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 28px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-card::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: var(--amber);
+    opacity: 0.08;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--warm-white);
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .quote-author {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  /* GREETING */
+  .greeting {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--warm-white);
+    margin-bottom: 4px;
+  }
+
+  .greeting-sub {
+    font-size: 14px;
+    color: var(--warm-muted);
+    margin-bottom: 24px;
+  }
+
+  /* CATEGORY PILLS */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .category-pill {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+  }
+
+  .category-pill:hover {
+    border-color: var(--amber-dim);
+    background: var(--card2);
+  }
+
+  .category-pill.selected {
+    background: rgba(232,164,48,0.12);
+    border-color: var(--amber);
+    box-shadow: 0 0 12px rgba(232,164,48,0.1);
+  }
+
+  .category-pill .pill-icon { font-size: 20px; }
+
+  .pill-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--warm-gray);
+  }
+
+  .category-pill.selected .pill-label { color: var(--amber-light); }
+
+  .category-pill-full {
+    grid-column: span 2;
+  }
+
+  /* PROGRESS BAR */
+  .progress-section {
+    margin-bottom: 20px;
+  }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .progress-label span:first-child {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--warm-muted);
+  }
+
+  .progress-label span:last-child {
+    font-size: 12px;
+    color: var(--amber);
+    font-weight: 700;
+  }
+
+  .progress-track {
+    height: 6px;
+    background: var(--bg3);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--amber-dim), var(--amber));
+    border-radius: 99px;
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 8px rgba(232,164,48,0.4);
+  }
+
+  /* QUEST MAP */
+  .quest-map {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .quest-node {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--warm-muted);
+    font-weight: 700;
+    transition: all 0.3s;
+    cursor: default;
+  }
+
+  .quest-node.completed {
+    background: rgba(122,182,72,0.2);
+    border-color: #7ab648;
+    color: #7ab648;
+  }
+
+  .quest-node.today {
+    background: rgba(232,164,48,0.2);
+    border-color: var(--amber);
+    color: var(--amber);
+    box-shadow: 0 0 10px rgba(232,164,48,0.3);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 10px rgba(232,164,48,0.3); }
+    50% { box-shadow: 0 0 18px rgba(232,164,48,0.6); }
+  }
+
+  /* CHECKIN ITEMS */
+  .checkin-item {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 10px;
+    transition: all 0.2s;
+  }
+
+  .checkin-item.completed-item {
+    border-color: rgba(122,182,72,0.3);
+    background: rgba(122,182,72,0.05);
+  }
+
+  .checkin-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .checkin-checkbox {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--border);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .checkin-checkbox.checked {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .checkin-checkbox.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .checkin-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--warm-white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .checkin-name .icon { font-size: 16px; }
+
+  .checkin-input {
+    margin-top: 2px;
+  }
+
+  .checkin-input input {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  /* JOURNAL ARCHIVE */
+  .journal-entry {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+
+  .journal-date {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .journal-tasks {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .journal-tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 99px;
+    font-weight: 600;
+  }
+
+  .journal-tag.done {
+    background: rgba(122,182,72,0.15);
+    color: #7ab648;
+    border: 1px solid rgba(122,182,72,0.3);
+  }
+
+  .journal-tag.missed {
+    background: rgba(224,90,58,0.1);
+    color: #e05a3a;
+    border: 1px solid rgba(224,90,58,0.2);
+  }
+
+  .journal-reflection {
+    font-size: 13px;
+    color: var(--warm-gray);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* MISSED DAY */
+  .missed-section {
+    background: linear-gradient(135deg, rgba(224,90,58,0.08), rgba(232,164,48,0.05));
+    border: 1px solid rgba(224,90,58,0.2);
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 16px;
+  }
+
+  .missed-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--warm-white);
+    margin-bottom: 6px;
+  }
+
+  .missed-subtitle {
+    font-size: 13px;
+    color: var(--warm-muted);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .stat-box {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 14px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--warm-muted);
+    font-weight: 600;
+  }
+
+  /* BOTTOM NAV */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(26,18,8,0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0 16px;
+    z-index: 100;
+  }
+
+  .nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 16px;
+    border-radius: 12px;
+    transition: all 0.2s;
+    color: var(--warm-muted);
+  }
+
+  .nav-btn.active { color: var(--amber); }
+
+  .nav-btn .nav-icon { font-size: 20px; }
+  .nav-btn .nav-label { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; font-family: 'Nunito', sans-serif; }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  /* ONBOARDING specific */
+  .onboarding-hero {
+    text-align: center;
+    padding: 40px 0 32px;
+  }
+
+  .onboarding-flame {
+    font-size: 56px;
+    margin-bottom: 20px;
+    display: block;
+    animation: flicker 3s ease-in-out infinite;
+  }
+
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-2deg); }
+    50% { transform: scale(1.05) rotate(2deg); }
+  }
+
+  .onboarding-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 7vw, 38px);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .onboarding-title em {
+    color: var(--amber);
+    font-style: italic;
+  }
+
+  .onboarding-body {
+    font-size: 15px;
+    color: var(--warm-gray);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border2);
+    margin: 20px 0;
+  }
+
+  .custom-goal-section {
+    margin-top: 10px;
+  }
+
+  .tag-amber {
+    display: inline-block;
+    background: rgba(232,164,48,0.15);
+    color: var(--amber);
+    border: 1px solid rgba(232,164,48,0.3);
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-bottom: 14px;
+  }
+
+  .spacer { height: 80px; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ONBOARDING SCREEN -->
+  <div id="screen-onboarding" class="screen active">
+    <div class="onboarding-hero">
+      <span class="onboarding-flame">🔥</span>
+      <h1 class="onboarding-title">The <em>Know Bull</em> Way<br>to a Better You</h1>
+      <p class="onboarding-body">Every hero's journey begins with a single step. You've already taken it by showing up. Let's find out who you're becoming.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Begin Your Quest</div>
+      <div class="card-subtitle">Tell us a little about you — this is your origin story.</div>
+
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="user-name" placeholder="What do we call you?" />
+      </div>
+
+      <div class="form-group">
+        <label>Your Primary Goal</label>
+        <input type="text" id="user-goal" placeholder="e.g. Lose 20 lbs, run a 5K, feel strong again..." />
+      </div>
+
+      <div class="form-group">
+        <label>Why does this matter to you?</label>
+        <textarea id="user-why" rows="3" placeholder="One sentence — your deepest reason. This is your north star."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Email for Daily Check-ins</label>
+        <input type="email" id="user-email" placeholder="your@email.com" />
+      </div>
+
+      <button class="btn-primary" onclick="startJourney()">Begin My Hero's Quest →</button>
+    </div>
+  </div>
+
+  <!-- MORNING SCREEN -->
+  <div id="screen-morning" class="screen">
+    <div class="app-header">
+      <div class="app-logo">Know Bull Wellness</div>
+      <h1 class="app-title">The <span>Know Bull</span> Way</h1>
+      <div class="app-subtitle">Your daily hero's journey</div>
+    </div>
+
+    <div id="morning-quote" class="quote-card"></div>
+
+    <div class="card">
+      <div id="morning-greeting" class="greeting"></div>
+      <div class="greeting-sub" id="morning-date"></div>
+
+      <div class="section-label">Set Your Intentions Today</div>
+
+      <div class="categories-grid">
+        <div class="category-pill" data-cat="food" onclick="toggleCategory(this)">
+          <span class="pill-icon">🥗</span>
+          <span class="pill-label">Food</span>
+        </div>
+        <div class="category-pill" data-cat="mental" onclick="toggleCategory(this)">
+          <span class="pill-icon">🧠</span>
+          <span class="pill-label">Mental Work</span>
+        </div>
+        <div class="category-pill" data-cat="stretch" onclick="toggleCategory(this)">
+          <span class="pill-icon">🧘</span>
+          <span class="pill-label">Stretch</span>
+        </div>
+        <div class="category-pill" data-cat="cardio" onclick="toggleCategory(this)">
+          <span class="pill-icon">🏃</span>
+          <span class="pill-label">Cardio</span>
+        </div>
+        <div class="category-pill category-pill-full" data-cat="strength" onclick="toggleCategory(this)">
+          <span class="pill-icon">💪</span>
+          <span class="pill-label">Strength Building</span>
+        </div>
+      </div>
+
+      <div class="custom-goal-section">
+        <div class="tag-amber">+ Your Goal</div>
+        <input type="text" id="custom-goal-input" placeholder="Add your personal goal for today..." />
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="lockInIntentions()" style="margin-bottom:16px">Lock In My Intentions 🔒</button>
+    <div class="spacer"></div>
+  </div>
+
+  <!-- MIDDAY SCREEN -->
+  <div id="screen-midday" class="screen">
+    <div class="app-header">
+      <div class="app-logo">Know Bull Wellness</div>
+      <h1 class="app-title">Midday <span>Check-In</span></h1>
+      <div class="app-subtitle">How's the quest going?</div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-text">"The secret of getting ahead is getting started. The secret of getting started is breaking your complex overwhelming tasks into small manageable tasks, and then starting on the first one."</div>
+      <div class="quote-author">— Mark Twain</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Your Morning Intentions</div>
+      <div class="card-subtitle">Check off what you've already accomplished. Every win counts.</div>
+      <div id="midday-checklist"></div>
+    </div>
+
+    <button class="btn-primary" onclick="saveMidday()">Save Progress & Keep Going →</button>
+    <div class="spacer"></div>
+  </div>
+
+  <!-- EVENING SCREEN -->
+  <div id="screen-evening" class="screen">
+    <div class="app-header">
+      <div class="app-logo">Know Bull Wellness</div>
+      <h1 class="app-title">Evening <span>Reflection</span></h1>
+      <div class="app-subtitle">The hero reflects on the day</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">How Did Your Quest Go Today?</div>
+      <div class="card-subtitle">Check off what you completed and leave a one-sentence reflection on each.</div>
+      <div id="evening-checklist"></div>
+    </div>
+
+    <button class="btn-primary" onclick="completeDay()">Complete Today's Quest ✨</button>
+    <div class="spacer"></div>
+  </div>
+
+  <!-- MISSED DAY SCREEN -->
+  <div id="screen-missed" class="screen">
+    <div class="app-header">
+      <div class="app-logo">Know Bull Wellness</div>
+      <h1 class="app-title">Every <span>Hero</span> Stumbles</h1>
+    </div>
+
+    <div class="missed-section">
+      <div class="missed-title">Today was hard. That's okay.</div>
+      <div class="missed-subtitle">The hero's journey was never meant to be a straight line. Every setback is part of the story — not the end of it.</div>
+      <div id="missed-sleep-quote" class="quote-card" style="margin-bottom:0; background: rgba(0,0,0,0.2);"></div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Write to Your Future Self</div>
+      <div class="card-subtitle" style="margin-top:-10px; margin-bottom:16px">What do you want the version of you who reaches the goal to know about this moment?</div>
+      <textarea id="future-self-letter" rows="5" placeholder="Dear future me..."></textarea>
+    </div>
+
+    <div class="card">
+      <div class="section-label">One Reflection Question</div>
+      <div id="reflection-question" class="card-subtitle" style="margin-top:-10px; margin-bottom:16px; font-size:15px; color: var(--warm-white);"></div>
+      <textarea id="reflection-answer" rows="3" placeholder="Your honest answer..."></textarea>
+    </div>
+
+    <div id="morning-comeback-quote" class="quote-card"></div>
+
+    <button class="btn-primary" onclick="showScreen('morning')">Tomorrow Is a New Chapter →</button>
+    <div class="spacer"></div>
+  </div>
+
+  <!-- PROGRESS SCREEN -->
+  <div id="screen-progress" class="screen">
+    <div class="app-header">
+      <div class="app-logo">Know Bull Wellness</div>
+      <h1 class="app-title">Your <span>Journey</span></h1>
+      <div class="app-subtitle" id="progress-days-label"></div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-number" id="stat-days">0</div>
+        <div class="stat-label">Days In</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" id="stat-streak">0</div>
+        <div class="stat-label">Streak</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" id="stat-completion">0%</div>
+        <div class="stat-label">Completion</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Quest Map</div>
+      <div class="card-subtitle">Every node is a day you showed up for yourself.</div>
+      <div id="quest-map" class="quest-map"></div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Overall Progress</div>
+      <div class="progress-section">
+        <div class="progress-label">
+          <span>Hero's Journey</span>
+          <span id="progress-pct">0%</span>
+        </div>
+        <div class="progress-track">
+          <div id="progress-fill" class="progress-fill" style="width:0%"></div>
+        </div>
+      </div>
+      <div id="user-goal-display" style="font-size:13px; color: var(--warm-muted); margin-top:12px; font-style:italic;"></div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Journal Archive</div>
+      <div id="journal-archive"></div>
+    </div>
+
+    <div class="spacer"></div>
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV (hidden during onboarding) -->
+<div class="bottom-nav" id="bottom-nav" style="display:none;">
+  <button class="nav-btn active" id="nav-morning" onclick="navTo('morning', this)">
+    <span class="nav-icon">🌅</span>
+    <span class="nav-label">Morning</span>
+  </button>
+  <button class="nav-btn" id="nav-midday" onclick="navTo('midday', this)">
+    <span class="nav-icon">☀️</span>
+    <span class="nav-label">Midday</span>
+  </button>
+  <button class="nav-btn" id="nav-evening" onclick="navTo('evening', this)">
+    <span class="nav-icon">🌙</span>
+    <span class="nav-label">Evening</span>
+  </button>
+  <button class="nav-btn" id="nav-progress" onclick="navTo('progress', this)">
+    <span class="nav-icon">🗺️</span>
+    <span class="nav-label">Journey</span>
+  </button>
+</div>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+const STATE = {
+  user: JSON.parse(localStorage.getItem('kbw_user') || 'null'),
+  days: JSON.parse(localStorage.getItem('kbw_days') || '[]'),
+  today: JSON.parse(localStorage.getItem('kbw_today') || 'null'),
+};
+
+function saveState() {
+  localStorage.setItem('kbw_user', JSON.stringify(STATE.user));
+  localStorage.setItem('kbw_days', JSON.stringify(STATE.days));
+  localStorage.setItem('kbw_today', JSON.stringify(STATE.today));
+}
+
+// ============================================================
+// CONTENT
+// ============================================================
+const QUOTES = [
+  { text: "The cave you fear to enter holds the treasure you seek.", author: "Joseph Campbell" },
+  { text: "You have power over your mind — not outside events. Realize this, and you will find strength.", author: "Marcus Aurelius" },
+  { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
+  { text: "The hero is the one who kindles a great light in the world, who sets up blazing torches in the dark streets of life.", author: "Felix Adler" },
+  { text: "What lies behind us and what lies before us are tiny matters compared to what lies within us.", author: "Ralph Waldo Emerson" },
+  { text: "The only person you are destined to become is the person you decide to be.", author: "Ralph Waldo Emerson" },
+  { text: "Hard days are the best because that's when champions are made.", author: "Gabby Douglas" },
+  { text: "You are braver than you believe, stronger than you seem, and smarter than you think.", author: "A.A. Milne" },
+  { text: "The body achieves what the mind believes.", author: "Unknown" },
+  { text: "Somewhere, someone is training when you are not. When you race them, they will win.", author: "Tom Fleming" },
+  { text: "Champions aren't made in the gyms. Champions are made from something they have deep inside them — a desire, a dream, a vision.", author: "Muhammad Ali" },
+  { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+];
+
+const REFLECTION_QUESTIONS = [
+  "What is one belief about yourself that kept you from showing up today — and is it actually true?",
+  "If the best version of you could speak to you right now, what would they say?",
+  "What did today teach you about what you're made of?",
+  "What would you do differently tomorrow, and what will you keep the same?",
+  "Who in your life is counting on you to become the best version of yourself?",
+];
+
+const MISSED_SLEEP_QUOTES = [
+  { text: "Every master was once a disaster.", author: "T. Harv Eker" },
+  { text: "Fall seven times, stand up eight.", author: "Japanese Proverb" },
+  { text: "Tomorrow is always fresh with no mistakes in it.", author: "L.M. Montgomery" },
+];
+
+const MORNING_COMEBACK_QUOTES = [
+  { text: "Today is a new beginning. A chance to turn it all around.", author: "Unknown" },
+  { text: "The sun is new each day.", author: "Heraclitus" },
+  { text: "Every morning we are born again. What we do today matters most.", author: "Buddha" },
+];
+
+const CATEGORY_META = {
+  food:     { icon: '🥗', label: 'Food' },
+  mental:   { icon: '🧠', label: 'Mental Work' },
+  stretch:  { icon: '🧘', label: 'Stretch' },
+  cardio:   { icon: '🏃', label: 'Cardio' },
+  strength: { icon: '💪', label: 'Strength Building' },
+};
+
+// ============================================================
+// UTILITIES
+// ============================================================
+function randomFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+function renderQuote(el, q) {
+  el.innerHTML = `<div class="quote-text">${q.text}</div><div class="quote-author">— ${q.author}</div>`;
+}
+
+function todayStr() {
+  return new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+}
+
+function todayKey() {
+  return new Date().toISOString().split('T')[0];
+}
+
+function getTimeOfDay() {
+  const h = new Date().getHours();
+  if (h < 12) return 'morning';
+  if (h < 17) return 'afternoon';
+  return 'evening';
+}
+
+// ============================================================
+// SCREENS
+// ============================================================
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+}
+
+function navTo(name, btn) {
+  showScreen(name);
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (name === 'morning') renderMorning();
+  if (name === 'midday') renderMidday();
+  if (name === 'evening') renderEvening();
+  if (name === 'progress') renderProgress();
+}
+
+// ============================================================
+// ONBOARDING
+// ============================================================
+function startJourney() {
+  const name = document.getElementById('user-name').value.trim();
+  const goal = document.getElementById('user-goal').value.trim();
+  const why  = document.getElementById('user-why').value.trim();
+  const email = document.getElementById('user-email').value.trim();
+  if (!name || !goal) { alert('Please enter your name and primary goal to begin.'); return; }
+
+  STATE.user = { name, goal, why, email, startDate: todayKey() };
+  STATE.today = { date: todayKey(), cats: [], custom: '', midday: {}, evening: {}, complete: false };
+  saveState();
+
+  document.getElementById('bottom-nav').style.display = 'flex';
+  renderMorning();
+  showScreen('morning');
+}
+
+// ============================================================
+// MORNING
+// ============================================================
+function renderMorning() {
+  if (!STATE.user) return;
+  renderQuote(document.getElementById('morning-quote'), randomFrom(QUOTES));
+  const tod = getTimeOfDay();
+  const greetings = {
+    morning: `Good morning, ${STATE.user.name}.`,
+    afternoon: `Good afternoon, ${STATE.user.name}.`,
+    evening: `Good evening, ${STATE.user.name}.`
+  };
+  document.getElementById('morning-greeting').textContent = greetings[tod];
+  document.getElementById('morning-date').textContent = todayStr();
+
+  // Restore custom goal if set
+  if (STATE.today?.custom) {
+    document.getElementById('custom-goal-input').value = STATE.today.custom;
+  }
+
+  // Restore category selections
+  if (STATE.today?.cats) {
+    document.querySelectorAll('.category-pill').forEach(p => {
+      if (STATE.today.cats.includes(p.dataset.cat)) p.classList.add('selected');
+    });
+  }
+}
+
+function toggleCategory(el) {
+  el.classList.toggle('selected');
+}
+
+function lockInIntentions() {
+  const selected = [...document.querySelectorAll('.category-pill.selected')].map(p => p.dataset.cat);
+  const custom = document.getElementById('custom-goal-input').value.trim();
+
+  if (selected.length === 0 && !custom) {
+    alert('Select at least one category or add a custom goal to set your intentions.');
+    return;
+  }
+
+  if (!STATE.today || STATE.today.date !== todayKey()) {
+    STATE.today = { date: todayKey(), cats: [], custom: '', midday: {}, evening: {}, complete: false };
+  }
+
+  STATE.today.cats = selected;
+  STATE.today.custom = custom;
+  saveState();
+
+  renderMidday();
+  navTo('midday', document.getElementById('nav-midday'));
+}
+
+// ============================================================
+// MIDDAY
+// ============================================================
+function renderMidday() {
+  const list = document.getElementById('midday-checklist');
+  list.innerHTML = '';
+  if (!STATE.today) return;
+
+  const items = getIntentionItems();
+  items.forEach(item => {
+    const checked = STATE.today.midday?.[item.cat] || false;
+    list.innerHTML += `
+      <div class="checkin-item ${checked ? 'completed-item' : ''}" id="mid-item-${item.cat}">
+        <div class="checkin-header">
+          <div class="checkin-checkbox ${checked ? 'checked' : ''}" onclick="toggleMidday('${item.cat}', this)"></div>
+          <div class="checkin-name"><span class="icon">${item.icon}</span>${item.label}</div>
+        </div>
+      </div>`;
+  });
+}
+
+function toggleMidday(cat, el) {
+  const checked = !el.classList.contains('checked');
+  el.classList.toggle('checked');
+  const item = document.getElementById('mid-item-' + cat);
+  item.classList.toggle('completed-item', checked);
+  if (!STATE.today.midday) STATE.today.midday = {};
+  STATE.today.midday[cat] = checked;
+  saveState();
+}
+
+function saveMidday() {
+  saveState();
+  renderEvening();
+  navTo('evening', document.getElementById('nav-evening'));
+}
+
+// ============================================================
+// EVENING
+// ============================================================
+function renderEvening() {
+  const list = document.getElementById('evening-checklist');
+  list.innerHTML = '';
+  if (!STATE.today) return;
+
+  const items = getIntentionItems();
+  items.forEach(item => {
+    const ev = STATE.today.evening?.[item.cat] || {};
+    const checked = ev.done || false;
+    const reflection = ev.reflection || '';
+    list.innerHTML += `
+      <div class="checkin-item ${checked ? 'completed-item' : ''}" id="eve-item-${item.cat}">
+        <div class="checkin-header">
+          <div class="checkin-checkbox ${checked ? 'checked' : ''}" onclick="toggleEvening('${item.cat}', this)"></div>
+          <div class="checkin-name"><span class="icon">${item.icon}</span>${item.label}</div>
+        </div>
+        <div class="checkin-input">
+          <input type="text" id="ref-${item.cat}" placeholder="One sentence — how did this go?" value="${reflection}" />
+        </div>
+      </div>`;
+  });
+}
+
+function toggleEvening(cat, el) {
+  const checked = !el.classList.contains('checked');
+  el.classList.toggle('checked');
+  document.getElementById('eve-item-' + cat).classList.toggle('completed-item', checked);
+  if (!STATE.today.evening) STATE.today.evening = {};
+  if (!STATE.today.evening[cat]) STATE.today.evening[cat] = {};
+  STATE.today.evening[cat].done = checked;
+  saveState();
+}
+
+function completeDay() {
+  if (!STATE.today) return;
+
+  // Save reflections
+  getIntentionItems().forEach(item => {
+    const refEl = document.getElementById('ref-' + item.cat);
+    if (!STATE.today.evening) STATE.today.evening = {};
+    if (!STATE.today.evening[item.cat]) STATE.today.evening[item.cat] = {};
+    STATE.today.evening[item.cat].reflection = refEl ? refEl.value.trim() : '';
+  });
+
+  const items = getIntentionItems();
+  const completedCount = items.filter(i => STATE.today.evening?.[i.cat]?.done).length;
+  const allDone = completedCount === items.length;
+
+  STATE.today.complete = allDone;
+  STATE.today.completedCount = completedCount;
+  STATE.today.totalCount = items.length;
+
+  // Archive day
+  const existing = STATE.days.findIndex(d => d.date === STATE.today.date);
+  if (existing >= 0) STATE.days[existing] = { ...STATE.today };
+  else STATE.days.push({ ...STATE.today });
+
+  saveState();
+
+  if (!allDone && completedCount < items.length) {
+    // Show missed day screen
+    showMissedDay();
+  } else {
+    renderProgress();
+    navTo('progress', document.getElementById('nav-progress'));
+  }
+}
+
+// ============================================================
+// MISSED DAY
+// ============================================================
+function showMissedDay() {
+  renderQuote(document.getElementById('missed-sleep-quote'), randomFrom(MISSED_SLEEP_QUOTES));
+  renderQuote(document.getElementById('morning-comeback-quote'), randomFrom(MORNING_COMEBACK_QUOTES));
+  const q = randomFrom(REFLECTION_QUESTIONS);
+  document.getElementById('reflection-question').textContent = q;
+  showScreen('missed');
+}
+
+// ============================================================
+// PROGRESS
+// ============================================================
+function renderProgress() {
+  if (!STATE.user) return;
+
+  const totalDays = STATE.days.length;
+  const completedDays = STATE.days.filter(d => d.complete).length;
+  const streak = calcStreak();
+  const pct = totalDays > 0 ? Math.round((completedDays / totalDays) * 100) : 0;
+
+  document.getElementById('stat-days').textContent = totalDays;
+  document.getElementById('stat-streak').textContent = streak;
+  document.getElementById('stat-completion').textContent = pct + '%';
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-days-label').textContent = `Day ${totalDays} of your hero's journey`;
+  document.getElementById('user-goal-display').textContent = `"${STATE.user.goal}" — ${STATE.user.why}`;
+
+  // Quest map
+  const mapEl = document.getElementById('quest-map');
+  mapEl.innerHTML = '';
+  const displayDays = Math.max(totalDays + 7, 30);
+  for (let i = 1; i <= displayDays; i++) {
+    const dayData = STATE.days[i - 1];
+    let cls = 'quest-node';
+    let label = i;
+    if (dayData) {
+      cls += dayData.complete ? ' completed' : '';
+      label = dayData.complete ? '✓' : '!';
+    } else if (i === totalDays + 1) {
+      cls += ' today';
+    }
+    mapEl.innerHTML += `<div class="${cls}" title="Day ${i}">${label}</div>`;
+  }
+
+  // Journal archive
+  const archiveEl = document.getElementById('journal-archive');
+  if (STATE.days.length === 0) {
+    archiveEl.innerHTML = `<div style="font-size:13px; color:var(--warm-muted); text-align:center; padding:20px 0;">Your story begins today. Complete your first day to see it here.</div>`;
+    return;
+  }
+
+  archiveEl.innerHTML = '';
+  [...STATE.days].reverse().forEach(day => {
+    const items = getIntentionItemsFromDay(day);
+    const tags = items.map(item => {
+      const done = day.evening?.[item.cat]?.done;
+      return `<span class="journal-tag ${done ? 'done' : 'missed'}">${item.icon} ${item.label}</span>`;
+    }).join('');
+
+    const reflections = items
+      .filter(i => day.evening?.[i.cat]?.reflection)
+      .map(i => `"${day.evening[i.cat].reflection}"`)
+      .join(' · ');
+
+    archiveEl.innerHTML += `
+      <div class="journal-entry">
+        <div class="journal-date">${formatDate(day.date)}</div>
+        <div class="journal-tasks">${tags}</div>
+        ${reflections ? `<div class="journal-reflection">${reflections}</div>` : ''}
+      </div>`;
+  });
+}
+
+function calcStreak() {
+  let streak = 0;
+  const today = todayKey();
+  const sorted = [...STATE.days].sort((a, b) => b.date.localeCompare(a.date));
+  for (const day of sorted) {
+    if (day.complete) streak++;
+    else break;
+  }
+  return streak;
+}
+
+function formatDate(str) {
+  return new Date(str + 'T12:00:00').toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
+}
+
+// ============================================================
+// HELPERS
+// ============================================================
+function getIntentionItems() {
+  return getIntentionItemsFromDay(STATE.today);
+}
+
+function getIntentionItemsFromDay(day) {
+  if (!day) return [];
+  const items = (day.cats || []).map(cat => ({ cat, ...CATEGORY_META[cat] }));
+  if (day.custom) items.push({ cat: 'custom', icon: '⭐', label: day.custom });
+  return items;
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  if (STATE.user) {
+    // Returning user — ensure today state exists
+    if (!STATE.today || STATE.today.date !== todayKey()) {
+      STATE.today = { date: todayKey(), cats: [], custom: '', midday: {}, evening: {}, complete: false };
+      saveState();
+    }
+    document.getElementById('bottom-nav').style.display = 'flex';
+    renderMorning();
+    showScreen('morning');
+  } else {
+    showScreen('onboarding');
+  }
+}
+
+init();
+</script>
+</body>
+</html>
